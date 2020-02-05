@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 from shutil import copy2
 from pydub import AudioSegment
@@ -112,4 +113,5 @@ def main():
         process_folder(cwd, dst_dir)
 
 
-main()
+if __name__ == '__main__':
+    main()

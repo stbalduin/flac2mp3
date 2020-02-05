@@ -28,7 +28,9 @@ setup(
     author='Stephan Balduin <st.balduin@outlook.de>',
     author_email='st.balduin@outlook.de',
     packages=find_packages(where='src'),
+    package_dir={'': 'src'},
     install_requires=REQUIREMENTS,
+    scripts=['bin/flac2mp3'],
     license=LICENSE,
     classifiers=[
         # Trove classifiers
