@@ -30,7 +30,11 @@ setup(
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     install_requires=REQUIREMENTS,
-    scripts=['bin/flac2mp3'],
+    # scripts=['bin/flac2mp3'],
+    entry_points='''
+        [console_scripts]
+        flac2mp3=flac2mp3.cli:cli
+    ''',
     license=LICENSE,
     classifiers=[
         # Trove classifiers

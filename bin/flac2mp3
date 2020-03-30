@@ -2,4 +2,3 @@
 
 from flac2mp3 import flac2mp3
 flac2mp3.main()
-
