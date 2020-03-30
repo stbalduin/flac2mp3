@@ -33,7 +33,11 @@ from flac2mp3.core import gather_tasks, process_tasks
     '--no-act', '-n', 'noact', is_flag=True,
     help='No action is done. '
 )
-def cli(src, dst, recursive, verbose, copy, noact):
+@click.option(
+    '--bitrate', '-b', default='196k',
+    help='Bitrate of the mp3s. Examples are 128k, 196k or 320k.'
+)
+def cli(src, dst, recursive, verbose, copy, noact, bitrate):
     
     # Setup logging
     loglvl = max(0, min(4, verbose))
@@ -47,6 +51,7 @@ def cli(src, dst, recursive, verbose, copy, noact):
     log.trace('Verbosity: {}'.format(verbose))
     log.trace('Copy cover: {}'.format(copy))
     log.trace('No action: {}'.format(noact))
+    log.trace('Bitrate: {}'.format(bitrate))
     
     # Recursion level
     recursive = max(0, min(4, recursive))  # Could be higher, though
@@ -56,13 +61,24 @@ def cli(src, dst, recursive, verbose, copy, noact):
     src_dir = util.get_dir(src)
     dst_dir = util.get_dir(dst)
     
+    # If the last part of the path is different, the source root folder
+    # is created at the destination. NOTE: This can be prevented if
+    # the source root folder ends with / while the destination
+    # folder ends with something different (or if both end with /)
+    src_path = path.split(src_dir)
+    dst_path = path.split(dst_dir)
+    if src_path[-1] != dst_path[-1]:
+        dst_dir = path.join(dst_dir, src_path[-1])
+    
     # Do the work part 1
     tasks = gather_tasks(src_dir, dst_dir, 
                          max_depth=recursive, 
-                         copy_cover=copy)
+                         copy_cover=copy,
+                         bitrate=bitrate)
 
     # Do the work part 2
     if noact:
+        log.warn('No action performed. This would be the result: ')
         util.list_tasks(tasks)
     else:
         process_tasks(tasks)

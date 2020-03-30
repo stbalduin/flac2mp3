@@ -20,9 +20,7 @@ def get_dir(target):
 
 def list_tasks(tasks):
     for task in tasks:
-        if task[0] == 'subfolder':
-            list_tasks(task[3])
-        elif task[0] == 'mkdir':
+        if task[0] == 'mkdir':
             click.echo('[Create directory] {}.'.format(task[1]))
         elif task[0] == 'copy':
             click.echo('[Copy] {} --> {}'.format(task[1], task[2]))

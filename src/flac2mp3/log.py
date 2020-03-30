@@ -25,7 +25,7 @@ def _log(msg, lvl=3, set_verbosity=None):
         VERBOSITY = set_verbosity
 
     if lvl <= VERBOSITY:
-        click.echo('[flac2mp3][{}] {}'.format(LVLS[lvl], msg))
+        click.echo('[flac2mp3] {}'.format(msg))
 
 def error(msg):
     _log(msg, 0)
