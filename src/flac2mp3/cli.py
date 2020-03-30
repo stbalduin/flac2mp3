@@ -67,9 +67,11 @@ def cli(src, dst, recursive, verbose, copy, noact, bitrate):
     # folder ends with something different (or if both end with /)
     src_path = path.split(src_dir)
     dst_path = path.split(dst_dir)
+    if src_dir == dst_dir:
+        dst_dir = path.join(dst_dir, 'mp3')
     if src_path[-1] != dst_path[-1]:
         dst_dir = path.join(dst_dir, src_path[-1])
-    
+
     # Do the work part 1
     tasks = gather_tasks(src_dir, dst_dir, 
                          max_depth=recursive, 

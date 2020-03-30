@@ -110,7 +110,7 @@ def _collect_cover(src_dir):
     return None
 
 
-def process_tasks(tasks, bitrate):
+def process_tasks(tasks):
     num_tasks = len(tasks)
     if num_tasks == 0:
         log.error('Nothing to do.')
