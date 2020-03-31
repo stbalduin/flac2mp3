@@ -13,10 +13,10 @@ from flac2mp3 import log
 
 def gather_tasks(src_dir, 
                  dst_dir, 
+                 bitrate,
                  max_depth=1, 
                  copy_cover=True, 
-                 depth=0,
-                 bitrate='196k'):
+                 depth=0):
     
     log.info('Gathering tasks in {}'.format(src_dir))
     log.debug('Recursivity: {}/{}'.format(depth, max_depth))
@@ -134,7 +134,7 @@ def process_tasks(tasks):
 
 
 def _process_file(src, dst, cover_path, audio_type_src, 
-                  audio_type_dst='mp3', bitrate='196k'):
+                  bitrate, audio_type_dst='mp3'):
 
     log.trace('Reading source file.')
     src_file = AudioSegment.from_file(src, format=audio_type_src)

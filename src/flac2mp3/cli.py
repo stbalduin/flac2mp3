@@ -34,8 +34,8 @@ from flac2mp3.core import gather_tasks, process_tasks
     help='No action is done. '
 )
 @click.option(
-    '--bitrate', '-b', default='196k',
-    help='Bitrate of the mp3s. Examples are 128k, 196k or 320k.'
+    '--bitrate', '-b', default='192k',
+    help='Bitrate of the mp3s. Examples are 128k, 192k or 320k.'
 )
 def cli(src, dst, recursive, verbose, copy, noact, bitrate):
     
